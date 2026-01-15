@@ -15,5 +15,5 @@ export const getMyEnrollments = () => {
 
 // teacher
 export const getTeacherCourses = () => {
-  return axiosInstance.get("/courses/teacher");
+  return axiosInstance.get("/courses/my");
 };
