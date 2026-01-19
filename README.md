@@ -157,3 +157,29 @@ Make sure backend runs on port 5000 and frontend on port 5173.
 
 ## ✅ Current Status
 Frontend and backend authentication, role-based dashboards, course management, and student progress tracking are fully implemented. The project is stable and ready for further enhancements or deployment.
+
+
+🧩 App Shell (Navbar & Sidebar)
+
+EduVillage uses a modern App Shell layout consisting of a top navigation bar and a collapsible sidebar.
+This structure is designed to support role-based navigation (Student, Teacher, Admin) and scalable UI development
+
+      Features:
+
+Sticky top navigation bar
+
+Sidebar toggle button
+
+Application branding (EduVillage)
+
+Authentication entry point (Login)
+
+Backdrop blur for modern UI look
+
+Current Behavior:
+
+Displays a Login button for authentication
+
+Sidebar trigger is always visible
+
+Stateless UI component (auth logic to be integrated later)
