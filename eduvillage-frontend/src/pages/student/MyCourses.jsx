@@ -4,6 +4,7 @@ import {
   updateProgress,
 } from "../../api/courseApi";
 import usePageTitle from "../../utils/usePageTitle";
+import Card from "../../components/ui/Card";
 
 const MyCourses = () => {
   usePageTitle("My Courses | EduVillage");
@@ -15,29 +16,39 @@ const MyCourses = () => {
     try {
       const res = await getMyEnrollments();
       setCourses(res.data);
-    } catch (err) {
+    } catch {
       setError("Failed to load enrolled courses");
     }
   };
 
-  useEffect(() => {
-    loadCourses();
-  }, []);
+ useEffect(() => {
+  const fetchCourses = async () => {
+    try {
+      const res = await getMyEnrollments();
+      setCourses(res.data);
+    } catch {
+      setError("Failed to load enrolled courses");
+    }
+  };
 
-  const handleProgressChange = async (enrollId, value) => {
+  fetchCourses();
+}, []);
+
+
+  const handleProgressChange = async (id, value) => {
     const progress = Number(value);
     if (progress < 0 || progress > 100) return;
 
     try {
-      await updateProgress(enrollId, progress);
-      loadCourses(); // refresh after update
-    } catch (err) {
+      await updateProgress(id, progress);
+      loadCourses();
+    } catch {
       console.error("Progress update failed");
     }
   };
 
   return (
-    <div>
+    <div style={{ maxWidth: "800px", margin: "auto" }}>
       <h2>My Enrolled Courses</h2>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -47,16 +58,7 @@ const MyCourses = () => {
       )}
 
       {courses.map((item) => (
-        <div
-          key={item._id}
-          style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            marginBottom: "10px",
-          }}
-        >
-          <h4>{item.course?.title}</h4>
-
+        <Card key={item._id} title={item.course?.title}>
           <p>Progress: {item.progress}%</p>
 
           <input
@@ -71,14 +73,10 @@ const MyCourses = () => {
 
           {item.isCompleted && (
             <p style={{ color: "green", marginTop: "8px" }}>
-              ✅ Course Completed
+              ✅ Completed · 🎓 Certificate Eligible
             </p>
           )}
-
-          {item.isCompleted && (
-            <p>🎓 Certificate Eligible (Simulated)</p>
-          )}
-        </div>
+        </Card>
       ))}
     </div>
   );

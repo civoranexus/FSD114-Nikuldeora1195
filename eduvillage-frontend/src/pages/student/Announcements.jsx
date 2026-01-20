@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAnnouncements } from "../../api/announcementApi";
+import usePageTitle from "../../utils/usePageTitle";
+import Card from "../../components/ui/Card";
 
 const Announcements = () => {
+  usePageTitle("Announcements | EduVillage");
+
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
@@ -11,7 +15,7 @@ const Announcements = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ maxWidth: "800px", margin: "auto" }}>
       <h2>Announcements</h2>
 
       {announcements.length === 0 && (
@@ -19,10 +23,9 @@ const Announcements = () => {
       )}
 
       {announcements.map((a) => (
-        <div key={a._id}>
-          <h4>{a.title}</h4>
+        <Card key={a._id} title={a.title}>
           <p>{a.message}</p>
-        </div>
+        </Card>
       ))}
     </div>
   );

@@ -6,36 +6,52 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <nav style={{ marginBottom: "20px" }}>
-      {user ? (
-        <>
-          {user.role === "student" && (
+    <nav className="bg-navy shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+        {/* Logo */}
+        <img
+          src="/Long_logo.png"
+          alt="Civora Nexus"
+          className="h-9"
+        />
+
+        {/* Links */}
+        <div className="flex items-center gap-6 text-sm font-medium text-white">
+          {user?.role === "student" && (
             <>
-              <Link to="/dashboard">Dashboard</Link>{" "}
-              <Link to="/courses">Courses</Link>{" "}
-              <Link to="/my-courses">My Courses</Link>{" "}
+              <Link className="hover:text-primary" to="/dashboard">Dashboard</Link>
+              <Link className="hover:text-primary" to="/courses">Courses</Link>
+              <Link className="hover:text-primary" to="/my-courses">My Learning</Link>
+              <Link className="hover:text-primary" to="/announcements">Announcements</Link>
             </>
           )}
 
-          {user.role === "teacher" && (
+          {user?.role === "teacher" && (
             <>
-              <Link to="/teacher/dashboard">Dashboard</Link>{" "}
-              <Link to="/teacher/courses">My Courses</Link>{" "}
-              <Link to="/teacher/announcements/create">
-  Create Announcement
-</Link>{" "}
-
+              <Link className="hover:text-primary" to="/teacher/dashboard">Dashboard</Link>
+              <Link className="hover:text-primary" to="/teacher/courses">Courses</Link>
+              <Link className="hover:text-primary" to="/teacher/announcements/create">Announcements</Link>
             </>
           )}
 
-          <button onClick={logout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>{" "}
-          <Link to="/register">Register</Link>
-        </>
-      )}
+          {!user && (
+            <>
+              <Link className="hover:text-primary" to="/login">Login</Link>
+              <Link className="hover:text-primary" to="/register">Register</Link>
+            </>
+          )}
+
+          {user && (
+            <button
+              onClick={logout}
+              className="bg-primaryDark px-4 py-2 rounded-md hover:bg-primary transition"
+            >
+              Logout
+            </button>
+          )}
+        </div>
+      </div>
     </nav>
   );
 };

@@ -2,47 +2,34 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import usePageTitle from "../../utils/usePageTitle";
-import { useEffect, useState } from "react";
-import { getTeacherCourses } from "../../api/courseApi";
-
+import Card from "../../components/ui/Card";
 
 const TeacherDashboard = () => {
-  const { user } = useContext(AuthContext);
   usePageTitle("Teacher Dashboard | EduVillage");
-const [total, setTotal] = useState(0);
-const [published, setPublished] = useState(0);
-
-useEffect(() => {
-  getTeacherCourses().then((res) => {
-    setTotal(res.data.length);
-    setPublished(
-      res.data.filter((c) => c.published || c.isPublished).length
-    );
-  });
-}, []);
-
+  const { user } = useContext(AuthContext);
 
   return (
-    <div>
+    <div style={{ maxWidth: "800px", margin: "auto" }}>
       <h1>Teacher Dashboard</h1>
 
-      <p>
-        <strong>Logged in as:</strong> {user?.email}
-      </p>
+      <Card title="Account">
+        <p>
+          <strong>Email:</strong> {user?.email}
+        </p>
+      </Card>
 
-      <p>Quick actions:</p>
-      <ul>
-        <li>
-          <Link to="/teacher/courses">My Courses</Link>
-        </li>
-      </ul>
-      <p>Total Courses: {total}</p>
-<p>Published Courses: {published}</p>
-
-
-      <p>
-        Use this dashboard to manage your courses and control publishing.
-      </p>
+      <Card title="Quick Actions">
+        <ul>
+          <li>
+            <Link to="/teacher/courses">My Courses</Link>
+          </li>
+          <li>
+            <Link to="/teacher/announcements/create">
+              Create Announcement
+            </Link>
+          </li>
+        </ul>
+      </Card>
     </div>
   );
 };
