@@ -3,6 +3,9 @@ import TeacherLayout from "../../components/app/TeacherLayout";
 import { createCourse } from "../../api/teacherCourseApi";
 import Card from "../../components/ui/Card";
 
+
+import toast from "react-hot-toast";
+
 const CreateCourse = () => {
   const [form, setForm] = useState({
     title: "",
@@ -15,6 +18,14 @@ const CreateCourse = () => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+
+    try {
+  await createCourse(form);
+  toast.success("Course created successfully");
+  setForm({ title: "", description: "" });
+} catch {
+  toast.error("Failed to create course");
+}
 
     try {
       await createCourse(form);

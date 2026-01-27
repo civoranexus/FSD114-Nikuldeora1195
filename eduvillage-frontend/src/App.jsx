@@ -8,6 +8,7 @@ import TeacherDashboard from "./pages/dashboard/TeacherDashboard";
 import Announcements from "./pages/student/Announcements";
 import CreateAnnouncement from "./pages/teacher/CreateAnnouncement";
 import CreateCourse from "./pages/teacher/CreateCourse";
+import EditCourse from "./pages/teacher/EditCourse";
 
 
 import CourseList from "./pages/student/CourseList";
@@ -114,6 +115,16 @@ function App() {
   element={
     <ProtectedRoute allowedRoles={["teacher"]}>
       <CreateCourse />
+    </ProtectedRoute>
+  }
+/>
+
+
+<Route
+  path="/teacher/courses/:id/edit"
+  element={
+    <ProtectedRoute allowedRoles={["teacher"]}>
+      <EditCourse />
     </ProtectedRoute>
   }
 />

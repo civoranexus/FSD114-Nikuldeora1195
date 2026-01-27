@@ -112,10 +112,72 @@ const getMyCourses = async (req, res) => {
   }
 };
 
+// Edit course (Teacher only)
+const updateCourse = async (req, res) => {
+  try {
+    const { title, description } = req.body;
+
+    const course = await Course.findById(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    // Ownership check
+    if (course.createdBy.toString() !== req.user.id) {
+      return res
+        .status(403)
+        .json({ message: "Not allowed to edit this course" });
+    }
+
+    course.title = title || course.title;
+    course.description = description || course.description;
+
+    await course.save();
+
+    res.json({
+      message: "Course updated successfully",
+      course,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+const togglePublish = async (req, res) => {
+  const course = await Course.findById(req.params.id);
+
+  if (!course) return res.status(404).json({ message: "Course not found" });
+
+  if (course.createdBy.toString() !== req.user.id)
+    return res.status(403).json({ message: "Not allowed" });
+
+  course.isPublished = !course.isPublished;
+  await course.save();
+
+  res.json({
+    message: course.isPublished
+      ? "Course published"
+      : "Course unpublished",
+    isPublished: course.isPublished,
+  });
+};
+
+
+
+
+
+
+
 module.exports = {
   createCourse,
   getCourses,
   publishCourse,
   getCourseStudents,
   getMyCourses,
+  togglePublish,
+
+  // getCourseById,
+  updateCourse
 };

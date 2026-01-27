@@ -6,6 +6,8 @@ import StudentLayout from "../../components/app/StudentLayout";
 import TeacherLayout from "../../components/app/TeacherLayout";
 import Card from "../../components/ui/Card";
 
+import toast from "react-hot-toast";
+
 import { getCourseById } from "../../api/courseDetailApi";
 import {
   enrollInCourse,
@@ -56,6 +58,15 @@ const CourseDetail = () => {
   const handleEnroll = async () => {
     setEnrolling(true);
     setMessage("");
+    const t = toast.loading("Enrolling...");
+try {
+  await enrollInCourse(id);
+  toast.success("Enrolled successfully", { id: t });
+  setEnrolled(true);
+} catch {
+  toast.error("Already enrolled", { id: t });
+}
+
 
     try {
       await enrollInCourse(id);

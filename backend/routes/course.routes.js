@@ -9,7 +9,8 @@ const {
   publishCourse,
   getCourseStudents,
   getMyCourses,
-   getCourseById
+   getCourseById,
+   updateCourse
 } = require("../controllers/course.controller");
 
 // Get all published courses (Student + Teacher + Admin)
@@ -52,6 +53,14 @@ router.get(
 //   getCourseById
 // );
 
+// Edit course
+router.put(
+  "/:id",
+  protect,
+  authorizeRoles("teacher"),
+  updateCourse
+);
+
 
 // Teacher dashboard - my courses
 router.get(
@@ -59,6 +68,15 @@ router.get(
   protect,
   authorizeRoles("teacher"),
   getMyCourses
+);
+
+
+
+router.patch(
+  "/:id/toggle",
+  protect,
+  authorizeRoles("teacher"),
+  togglePublish
 );
 
 

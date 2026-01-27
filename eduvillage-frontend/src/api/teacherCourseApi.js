@@ -27,3 +27,14 @@ export const getMyCourses = () => {
 export const publishCourse = (id) => {
   return API.put(`/courses/${id}/publish`);
 };
+
+
+// Get single course (teacher)
+export const getCourseById = (id) => {
+  return API.get(`/courses/${id}`);
+};
+
+// Update course
+export const updateCourse = (id, data) => {
+  return API.put(`/courses/${id}`, data);
+};
