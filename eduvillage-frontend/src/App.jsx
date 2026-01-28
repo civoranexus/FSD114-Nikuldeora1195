@@ -10,14 +10,13 @@ import CreateAnnouncement from "./pages/teacher/CreateAnnouncement";
 import CreateCourse from "./pages/teacher/CreateCourse";
 import EditCourse from "./pages/teacher/EditCourse";
 
-
 import CourseList from "./pages/student/CourseList";
 import MyCourses from "./pages/student/MyCourses";
 import TeacherCourses from "./pages/teacher/MyCourses";
 import NotFound from "./pages/NotFound";
 
 import CourseDetail from "./pages/student/CourseDetail";
-
+import CourseContent from "./pages/course/CourseContent";
 import ProtectedRoute from "./components/protected/ProtectedRoute";
 
 function App() {
@@ -109,26 +108,28 @@ function App() {
                   }
                 />
 
+                <Route
+                  path="/teacher/courses/create"
+                  element={
+                    <ProtectedRoute allowedRoles={["teacher"]}>
+                      <CreateCourse />
+                    </ProtectedRoute>
+                  }
+                />
 
                 <Route
-  path="/teacher/courses/create"
-  element={
-    <ProtectedRoute allowedRoles={["teacher"]}>
-      <CreateCourse />
-    </ProtectedRoute>
-  }
-/>
+                  path="/teacher/courses/:id/edit"
+                  element={
+                    <ProtectedRoute allowedRoles={["teacher"]}>
+                      <EditCourse />
+                    </ProtectedRoute>
+                  }
+                />
 
-
-<Route
-  path="/teacher/courses/:id/edit"
-  element={
-    <ProtectedRoute allowedRoles={["teacher"]}>
-      <EditCourse />
-    </ProtectedRoute>
-  }
-/>
-
+                <Route
+                  path="/courses/:courseId/content"
+                  element={<CourseContent />}
+                />
 
                 <Route path="*" element={<NotFound />} />
               </Routes>

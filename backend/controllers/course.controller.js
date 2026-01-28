@@ -108,9 +108,12 @@ const getMyCourses = async (req, res) => {
 
     res.json(courses);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
+
 
 // Edit course (Teacher only)
 const updateCourse = async (req, res) => {
@@ -164,6 +167,19 @@ const togglePublish = async (req, res) => {
   });
 };
 
+const getCourseById = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 
@@ -177,6 +193,7 @@ module.exports = {
   getCourseStudents,
   getMyCourses,
   togglePublish,
+getCourseById,
 
   // getCourseById,
   updateCourse

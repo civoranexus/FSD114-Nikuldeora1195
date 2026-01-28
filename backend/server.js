@@ -53,3 +53,4 @@ app.use(errorHandler);
 const notificationRoutes = require("./routes/notification.routes");
 app.use("/api/notifications", notificationRoutes);
 
+app.use("/api/content", require("./routes/content.routes"));
