@@ -1,58 +1,13 @@
+// 
+
+
 const Enrollment = require("../models/Enrollment");
 const Course = require("../models/Course");
-const Lesson = require("../models/Lesson");
-const Section = require("../models/Section");
-
-
-
-exports.completeLesson = async (req, res) => {
-  try {
-    const { lessonId } = req.params;
-    const userId = req.user.id;
-
-    const lesson = await Lesson.findById(lessonId);
-    if (!lesson)
-      return res.status(404).json({ message: "Lesson not found" });
-
-    const section = await Section.findById(lesson.section);
-    const enrollment = await Enrollment.findOne({
-      student: userId,
-      course: section.course,
-    });
-
-    if (!enrollment)
-      return res.status(404).json({ message: "Not enrolled" });
-
-    if (!enrollment.completedLessons.includes(lessonId)) {
-      enrollment.completedLessons.push(lessonId);
-    }
-
-    const sections = await Section.find({ course: section.course });
-    const sectionIds = sections.map((s) => s._id);
-    const totalLessons = await Lesson.countDocuments({
-      section: { $in: sectionIds },
-    });
-
-    enrollment.progress = Math.round(
-      (enrollment.completedLessons.length / totalLessons) * 100
-    );
-
-    if (enrollment.progress === 100) {
-      enrollment.isCompleted = true;
-      enrollment.completedAt = new Date();
-    }
-
-    await enrollment.save();
-
-    res.json(enrollment);
-  } catch (error) {
-    res.status(500).json({ message: "Lesson completion failed" });
-  }
-};
 
 // Student enrolls in a course
 const enrollInCourse = async (req, res) => {
-  try {
+try {
+
     const courseId = req.params.courseId;
     const studentId = req.user.id;
 

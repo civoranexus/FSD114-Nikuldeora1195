@@ -5,45 +5,29 @@ const enrollmentSchema = new mongoose.Schema(
     student: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     course: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
-      required: true
+      required: true,
     },
     progress: {
       type: Number,
-      default: 0
+      default: 0,
     },
-      completedLessons: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Lesson",
-      },
-    ],
     isCompleted: {
       type: Boolean,
       default: false,
     },
-    isCompleted: {
-        type: Boolean,
-        default:false
+    completedAt: {
+      type: Date,
     },
-    completedAt:{
-        type:Date
-    },
-
   },
-  
 
-
-  
   {
-    timestamps: true
-  }
+    timestamps: true,
+  },
 );
-
-
 
 module.exports = mongoose.model("Enrollment", enrollmentSchema);

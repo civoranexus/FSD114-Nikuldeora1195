@@ -1,11 +1,11 @@
 import axiosInstance from "./axiosInstance";
 
-// student + teacher
-export const getAnnouncements = () => {
-  return axiosInstance.get("/announcements");
+// Create announcement (teacher/admin)
+export const createAnnouncement = (data) => {
+  return axiosInstance.post("/notifications", data);
 };
 
-// teacher/admin
-export const createAnnouncement = (data) => {
-  return axiosInstance.post("/announcements", data);
+// Get announcements (students & teachers)
+export const getAnnouncements = () => {
+  return axiosInstance.get("/notifications");
 };

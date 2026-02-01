@@ -11,4 +11,8 @@ export default defineConfig({
   theme: {
     extend: {},
   },
+   server: {
+    hmr: {
+      overlay: false,
+    },}
 })

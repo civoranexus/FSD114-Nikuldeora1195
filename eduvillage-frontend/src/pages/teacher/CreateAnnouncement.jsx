@@ -9,18 +9,20 @@ const CreateAnnouncement = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccess("");
 
     try {
       await createAnnouncement(form);
-      alert("Announcement created");
+      setSuccess("Announcement posted successfully");
       setForm({ title: "", message: "" });
-    } catch (err) {
+    } catch {
       setError("Failed to create announcement");
     } finally {
       setLoading(false);
@@ -28,37 +30,45 @@ const CreateAnnouncement = () => {
   };
 
   return (
-     <TeacherLayout title="Teacher Dashboard"> <div>
-      <h2>Create Announcement</h2>
+    <TeacherLayout title="Create Announcement">
+      <div className="max-w-xl">
+        <h2 className="text-xl font-semibold mb-4">New Announcement</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="text-red-600 mb-2">{error}</p>}
+        {success && <p className="text-green-600 mb-2">{success}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Title"
-          value={form.title}
-          onChange={(e) =>
-            setForm({ ...form, title: e.target.value })
-          }
-          required
-        />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            className="w-full border px-3 py-2 rounded"
+            placeholder="Title"
+            value={form.title}
+            onChange={(e) =>
+              setForm({ ...form, title: e.target.value })
+            }
+            required
+          />
 
-        <textarea
-          placeholder="Message"
-          value={form.message}
-          onChange={(e) =>
-            setForm({ ...form, message: e.target.value })
-          }
-          required
-        />
+          <textarea
+            className="w-full border px-3 py-2 rounded"
+            rows={4}
+            placeholder="Announcement message"
+            value={form.message}
+            onChange={(e) =>
+              setForm({ ...form, message: e.target.value })
+            }
+            required
+          />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Posting..." : "Post Announcement"}
-        </button>
-      </form>
-    </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-[#142C52] text-white px-4 py-2 rounded"
+          >
+            {loading ? "Posting..." : "Post Announcement"}
+          </button>
+        </form>
+      </div>
     </TeacherLayout>
-   
   );
 };
 
