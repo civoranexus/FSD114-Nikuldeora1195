@@ -1,0 +1,40 @@
+import axiosInstance from "./axiosInstance";
+
+// ================= STUDENT =================
+
+export const getPublishedCourses = () => {
+  return axiosInstance.get("/courses");
+};
+
+export const enrollCourse = (courseId) => {
+  return axiosInstance.post(`/enroll/${courseId}`);
+};
+
+export const getMyEnrollments = () => {
+  return axiosInstance.get("/enroll/my-courses");
+};
+
+// ================= TEACHER =================
+
+export const getTeacherCourses = () => {
+  return axiosInstance.get("/courses/my");
+};
+
+export const togglePublishCourse = (courseId) => {
+  return axiosInstance.patch(`/courses/${courseId}/publish`);
+};
+
+// ================= PROGRESS =================
+
+export const updateProgress = (enrollId, progress) => {
+  return axiosInstance.patch(`/enroll/${enrollId}/progress`, {
+    progress,
+  });
+};
+
+// ✅ LESSON COMPLETION (FIXED)
+export const completeLesson = (lessonId) => {
+  return axiosInstance.put(
+    `/enroll/lesson/${lessonId}/complete`
+  );
+};
