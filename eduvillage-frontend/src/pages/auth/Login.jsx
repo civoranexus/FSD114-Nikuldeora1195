@@ -20,12 +20,15 @@ const Login = () => {
 
       login(user, res.data.token);
 
-      // ✅ ROLE-BASED REDIRECT (FIX)
-      if (user.role === "teacher") {
-        navigate("/teacher/dashboard");
-      } else {
-        navigate("/dashboard");
-      }
+     if (user.role === "admin") {
+  navigate("/admin/dashboard");
+} else if (user.role === "teacher") {
+  navigate("/teacher/dashboard");
+} else {
+  navigate("/dashboard");
+}
+
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError("Invalid email or password");
     }

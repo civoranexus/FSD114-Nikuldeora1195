@@ -214,7 +214,7 @@ const AdminUsers = () => {
                     </td>
                   </tr>
                 ) : (
-                  filteredUsers.map((user, index) => (
+                  filteredUsers.map((user) => (
                     <tr
                       key={user._id}
                       className="border-b border-[#CCE7EC] hover:bg-[#F4F7FA] transition-colors"

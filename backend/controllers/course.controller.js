@@ -1,3 +1,4 @@
+const { completeLesson } = require("../../eduvillage-frontend/src/api/courseApi");
 const Course = require("../models/Course");
 const Enrollment = require("../models/Enrollment");
 
@@ -194,7 +195,7 @@ module.exports = {
   getMyCourses,
   togglePublish,
 getCourseById,
-
+completeLesson,
   // getCourseById,
   updateCourse
 };

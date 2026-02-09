@@ -20,6 +20,16 @@ import CourseContent from "./pages/course/CourseContent";
 import ProtectedRoute from "./components/protected/ProtectedRoute";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminCourses from "./pages/admin/AdminCourses";
+
+import Students from "./pages/teacher/Students";
+
+
+
+
+
+
 
 function App() {
   return (
@@ -168,6 +178,20 @@ function App() {
 />
 
 
+<Route 
+path="/admin/courses" 
+element={
+<ProtectedRoute allowedRoles={["admin"]}>
+  <AdminCourses />
+  </ProtectedRoute>
+} />
+
+
+// In your Routes
+<Route path="/teacher/students" element={
+  <ProtectedRoute allowedRoles={["teacher"]}>
+  <Students />
+  </ProtectedRoute>} />
 
 
                 <Route path="*" element={<NotFound />} />

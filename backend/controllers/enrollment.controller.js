@@ -1,59 +1,103 @@
-// 
-
-
 const Enrollment = require("../models/Enrollment");
 const Course = require("../models/Course");
+const Lesson = require("../models/Lesson");
+const Section = require("../models/Section");
 
-// Student enrolls in a course
+// ---------------------- COMPLETE LESSON ----------------------
+const completeLesson = async (req, res) => {
+  try {
+    const { lessonId } = req.params;
+    const userId = req.user.id;
+
+    const lesson = await Lesson.findById(lessonId);
+    if (!lesson) {
+      return res.status(404).json({ message: "Lesson not found" });
+    }
+
+    const section = await Section.findById(lesson.section);
+    if (!section) {
+      return res.status(404).json({ message: "Section not found" });
+    }
+
+    const enrollment = await Enrollment.findOne({
+      student: userId,
+      course: section.course,
+    });
+
+    if (!enrollment) {
+      return res.status(404).json({ message: "Not enrolled in course" });
+    }
+
+    if (!enrollment.completedLessons.includes(lessonId)) {
+      enrollment.completedLessons.push(lessonId);
+    }
+
+    const sections = await Section.find({ course: section.course });
+    const sectionIds = sections.map((s) => s._id);
+
+    const totalLessons = await Lesson.countDocuments({
+      section: { $in: sectionIds },
+    });
+
+    enrollment.progress = Math.round(
+      (enrollment.completedLessons.length / totalLessons) * 100
+    );
+
+    if (enrollment.progress === 100) {
+      enrollment.isCompleted = true;
+      enrollment.completedAt = new Date();
+    }
+
+    await enrollment.save();
+
+    res.json(enrollment);
+  } catch (error) {
+    console.error("Complete lesson error:", error);
+    res.status(500).json({ message: "Lesson completion failed" });
+  }
+};
+
+// ---------------------- ENROLL ----------------------
 const enrollInCourse = async (req, res) => {
-try {
-
+  try {
     const courseId = req.params.courseId;
     const studentId = req.user.id;
 
-    // Check if course exists and is published
     const course = await Course.findOne({
       _id: courseId,
-      isPublished: true
+      isPublished: true,
     });
 
     if (!course) {
       return res.status(404).json({ message: "Course not available" });
     }
 
-    // Check if already enrolled
-    const alreadyEnrolled = await Enrollment.findOne({
+    const already = await Enrollment.findOne({
       student: studentId,
-      course: courseId
+      course: courseId,
     });
 
-    if (alreadyEnrolled) {
+    if (already) {
       return res.status(400).json({ message: "Already enrolled" });
     }
 
-    // Enroll student
     const enrollment = await Enrollment.create({
       student: studentId,
-      course: courseId
+      course: courseId,
     });
 
-    res.status(201).json({
-      message: "Enrolled successfully",
-      enrollment
-    });
+    res.status(201).json(enrollment);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-// Get all courses a student is enrolled in
+// ---------------------- MY COURSES ----------------------
 const getMyCourses = async (req, res) => {
   try {
-    const studentId = req.user.id;
-
-    const enrollments = await Enrollment.find({ student: studentId })
-      .populate("course", "title description isPublished");
+    const enrollments = await Enrollment.find({
+      student: req.user.id,
+    }).populate("course", "title description");
 
     res.json(enrollments);
   } catch (error) {
@@ -61,65 +105,40 @@ const getMyCourses = async (req, res) => {
   }
 };
 
-// Update course progress (Student only)
+// ---------------------- UPDATE PROGRESS ----------------------
 const updateProgress = async (req, res) => {
-    if (!enrollmentId) {
-  return res.status(400).json({
-    message: "Enrollment ID is required"
-  });
-}
-
   try {
-    const enrollmentId = req.params.enrollmentId;
+    const { enrollmentId } = req.params;
     const { progress } = req.body;
 
-    // Validate progress value
-    if (progress < 0 || progress > 100) {
-      return res.status(400).json({
-        message: "Progress must be between 0 and 100"
-      });
-    }
-
-    // Find enrollment
     const enrollment = await Enrollment.findById(enrollmentId);
 
     if (!enrollment) {
-      return res.status(404).json({
-        message: "Enrollment not found"
-      });
+      return res.status(404).json({ message: "Enrollment not found" });
     }
 
-    // Ensure student owns this enrollment
     if (enrollment.student.toString() !== req.user.id) {
-      return res.status(403).json({
-        message: "Not allowed to update this enrollment"
-      });
+      return res.status(403).json({ message: "Unauthorized" });
     }
 
-    // Update progress
     enrollment.progress = progress;
 
-// If course completed
-if (progress === 100) {
-  enrollment.isCompleted = true;
-  enrollment.completedAt = new Date();
-}
+    if (progress === 100) {
+      enrollment.isCompleted = true;
+      enrollment.completedAt = new Date();
+    }
 
     await enrollment.save();
-
-    res.json({
-      message: "Progress updated successfully",
-      progress: enrollment.progress
-    });
+    res.json(enrollment);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-
-
-
-module.exports = { enrollInCourse,getMyCourses,
-    updateProgress
- };
+// ✅ SINGLE EXPORT STYLE (NO MIXING)
+module.exports = {
+  enrollInCourse,
+  getMyCourses,
+  updateProgress,
+  completeLesson,
+};

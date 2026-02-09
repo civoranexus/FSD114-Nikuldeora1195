@@ -101,7 +101,7 @@ const CourseList = () => {
       <div className="space-y-8">
         {/* Header Section */}
         <div className="bg-linear-to-r from-[#02394A] via-[#012136] to-[#01181F] rounded-xl p-8 text-white shadow-lg">
-          <h1 className="text-3xl font-bold mb-2">Explore Courses 🎓</h1>
+          <h1 className="text-3xl font-bold text-cyan-600 mb-2">Explore Courses 🎓</h1>
           <p className="text-[#CCE7EC] text-lg">
             Discover new skills and advance your learning journey
           </p>

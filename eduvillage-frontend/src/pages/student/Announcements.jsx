@@ -144,11 +144,11 @@ const Announcements = () => {
     <StudentLayout title="Announcements">
       <div className="space-y-8">
         {/* Header Section */}
-        <div className="bg-linear-to-r from-[#305864] via-[#012136] to-[#01181F] rounded-xl p-8 text-white shadow-lg">
+        <div className="bg-linear-to-r from-[#103642] via-[#025992] to-[#105c73] rounded-xl p-8 text-white shadow-lg">
           <div className="flex items-center space-x-4 mb-2">
             <span className="text-5xl">📢</span>
             <div>
-              <h1 className="text-3xl font-bold">Announcements</h1>
+              <h1 className="text-3xl text-cyan-600 font-bold">Announcements</h1>
               <p className="text-[#CCE7EC] text-lg">
                 Stay updated with the latest news and updates
               </p>

@@ -18,8 +18,8 @@ const AdminSidebar = () => {
     { path: "/admin/dashboard", icon: "📊", label: "Dashboard" },
     { path: "/admin/users", icon: "👥", label: "Users" },
     { path: "/admin/courses", icon: "📚", label: "Courses" },
-    { path: "/admin/reports", icon: "📈", label: "Reports" },
-    { path: "/admin/settings", icon: "⚙️", label: "Settings" },
+    // { path: "/admin/reports", icon: "📈", label: "Reports" },
+    // { path: "/admin/settings", icon: "⚙️", label: "Settings" },
   ];
 
   return (
