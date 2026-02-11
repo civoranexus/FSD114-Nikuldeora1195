@@ -1,149 +1,5 @@
 
 
-// // import { useEffect, useState } from "react";
-// // import { useNavigate } from "react-router-dom";
-// // import {
-// //   getMyEnrollments,
-// //   updateProgress,
-// // } from "../../api/courseApi";
-// // import usePageTitle from "../../utils/usePageTitle";
-// // import StudentLayout from "../../components/app/StudentLayout";
-
-// // const MyCourses = () => {
-// //   usePageTitle("My Learning | EduVillage");
-
-// //   const navigate = useNavigate();
-// //   const [courses, setCourses] = useState([]);
-// //   const [error, setError] = useState("");
-
-// //   // 🔄 Load enrolled courses
-// //   const loadCourses = async () => {
-// //     try {
-// //       const res = await getMyEnrollments();
-// //       setCourses(res.data);
-// //     } catch {
-// //       setError("Failed to load enrolled courses");
-// //     }
-// //   };
-
-// //   useEffect(() => {
-// //     loadCourses();
-// //   }, []);
-
-// //   // 📊 Update progress
-// //   const handleProgressChange = async (id, value) => {
-// //     const progress = Number(value);
-// //     if (progress < 0 || progress > 100) return;
-
-// //     try {
-// //       await updateProgress(id, progress);
-// //       loadCourses();
-// //     } catch {
-// //       console.error("Progress update failed");
-// //     }
-// //   };
-
-// //   return (
-// //     <StudentLayout title="My Learning">
-// //       <div className="max-w-6xl mx-auto py-8">
-// //         <h1 className="text-3xl font-bold mb-8 text-[#142C52]">
-// //           My Enrolled Courses
-// //         </h1>
-
-// //         {error && (
-// //           <p className="text-red-500 mb-4">{error}</p>
-// //         )}
-
-// //         {courses.length === 0 && (
-// //           <p className="text-gray-600">
-// //             You have not enrolled in any courses yet.
-// //           </p>
-// //         )}
-
-// //         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-// //           {courses.map((item) => {
-// //             const course = item.course;
-// //             const progress = item.progress || 0;
-
-// //             return (
-// //               <div
-// //                 key={item._id}
-// //                 className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col"
-// //               >
-// //                 <h2 className="text-lg font-semibold text-[#142C52] mb-2">
-// //                   {course?.title}
-// //                 </h2>
-
-// //                 <p className="text-sm text-gray-600 mb-4 line-clamp-3">
-// //                   {course?.description}
-// //                 </p>
-
-// //                 {/* Progress Bar */}
-// //                 <div className="mb-4">
-// //                   <div className="text-sm text-gray-500 mb-1">
-// //                     Progress: {progress}%
-// //                   </div>
-// //                   <div className="w-full bg-gray-200 rounded-full h-2">
-// //                     <div
-// //                       className="bg-[#142C52] h-2 rounded-full transition-all"
-// //                       style={{ width: `${progress}%` }}
-// //                     />
-// //                   </div>
-// //                 </div>
-
-// //                 {/* Manual Progress Update (Optional) */}
-// //                 <input
-// //                   type="number"
-// //                   min="0"
-// //                   max="100"
-// //                   value={progress}
-// //                   onChange={(e) =>
-// //                     handleProgressChange(
-// //                       item._id,
-// //                       e.target.value
-// //                     )
-// //                   }
-// //                   className="border rounded px-2 py-1 text-sm mb-4 w-full"
-// //                 />
-
-// //                 {item.isCompleted && (
-// //                   <p className="text-green-600 text-sm mb-3">
-// //                     ✅ Completed · 🎓 Certificate Eligible
-// //                   </p>
-// //                 )}
-
-// //                 {/* Continue Learning */}
-// //                 <button
-// //                   onClick={() =>
-// //                     navigate(
-// //                       `/courses/${course?._id}/content`
-// //                     )
-// //                   }
-// //                   className="mt-auto bg-[#142C52] text-white py-2 rounded-md hover:bg-[#0f2140] transition"
-// //                 >
-// //                   Continue Learning
-// //                 </button>
-// //               </div>
-// //             );
-// //           })}
-// //         </div>
-// //       </div>
-// //     </StudentLayout>
-// //   );
-// // };
-
-// // export default MyCourses;
-
-
-
-
-
-
-
-
-
-
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { getMyEnrollments, updateProgress } from "../../api/enrollmentApi";
@@ -153,6 +9,11 @@ import {
 } from "../../api/courseApi";
 import usePageTitle from "../../utils/usePageTitle";
 import StudentLayout from "../../components/app/StudentLayout";
+// import { generateCertificate } from "../../api/certificateApi";
+
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
 
 const MyCourses = () => {
   usePageTitle("My Learning | EduVillage");
@@ -162,6 +23,7 @@ const MyCourses = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all"); // all, in-progress, completed
+const { user } = useContext(AuthContext);
 
   // 🔄 Load enrolled courses
   const loadCourses = async () => {
@@ -261,6 +123,8 @@ const MyCourses = () => {
             </div>
           </div>
 
+          
+
           {/* Completed */}
           <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-6 border-l-4 border-[#22C55E] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div className="flex items-center justify-between">
@@ -270,12 +134,14 @@ const MyCourses = () => {
                 </p>
                 <p className="text-4xl font-bold text-[#142C52]">{completedCourses}</p>
               </div>
+              
               <div className="bg-linear-to-br from-[#22C55E] to-[#178740] p-4 rounded-full">
                 <span className="text-4xl">✅</span>
               </div>
             </div>
           </div>
         </div>
+        
 
         {/* Error Message */}
         {error && (
@@ -426,14 +292,29 @@ const MyCourses = () => {
                       <span className="text-sm text-[#071426] opacity-70">%</span>
                     </div>
 
-                    {/* Certificate Badge */}
-                    {item.isCompleted && (
-                      <div className="bg-linear-to-r from-[#22C55E]/10 to-[#178740]/10 border-l-4 border-[#22C55E] p-3 rounded-lg">
-                        <p className="text-[#178740] text-sm font-semibold flex items-center gap-2">
-                          🎓 Certificate Eligible
-                        </p>
-                      </div>
-                    )}
+                  {/* Certificate Section */}
+{item.isCompleted && (
+  <div className="bg-linear-to-r from-[#22C55E]/10 to-[#178740]/10 border-l-4 border-[#22C55E] p-4 rounded-lg space-y-2">
+    <p className="text-[#178740] text-sm font-semibold flex items-center gap-2">
+      🎓 Certificate Eligible
+    </p>
+<button
+  onClick={() =>
+ navigate(`/certificate/${encodeURIComponent(course.title)}`
+
+)
+
+  }
+  className="bg-green-600 text-white px-4 py-2 rounded"
+>
+  View Certificate
+</button>
+
+
+
+  </div>
+)}
+
 
                     {/* Action Buttons */}
                     <div className="flex gap-2 pt-2">
@@ -450,6 +331,10 @@ const MyCourses = () => {
             })}
           </div>
         )}
+
+
+
+
 
         {/* Overall Progress Summary */}
         {totalCourses > 0 && (

@@ -12,6 +12,13 @@ const enrollmentSchema = new mongoose.Schema(
       ref: "Course",
       required: true,
     },
+
+    completedLessons: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Lesson",
+      },
+    ],
     progress: {
       type: Number,
       default: 0,
@@ -23,6 +30,14 @@ const enrollmentSchema = new mongoose.Schema(
     completedAt: {
       type: Date,
     },
+    certificateIssued: {
+  type: Boolean,
+  default: false,
+},
+certificateUrl: {
+  type: String,
+},
+
   },
 
   {

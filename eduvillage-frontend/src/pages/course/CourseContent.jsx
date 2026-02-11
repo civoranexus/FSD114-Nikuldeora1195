@@ -308,6 +308,8 @@ const CourseContent = () => {
                         })
                       )}
 
+
+                      
                       {/* Add Lesson Form (Teacher) */}
                       {user?.role === "teacher" && (
                         <div className="mt-6 p-6 bg-linear-to-br from-[#CCE7EC]/30 to-[#4C97A8]/10 rounded-xl border-2 border-dashed border-[#1B9AAA]">

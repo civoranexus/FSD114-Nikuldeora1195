@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/purity */
 // /* eslint-disable react-hooks/purity */
 // // import { useEffect, useState } from "react";
 // // import TeacherLayout from "../../components/app/TeacherLayout";

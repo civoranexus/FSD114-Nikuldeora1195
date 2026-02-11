@@ -25,6 +25,7 @@ import AdminCourses from "./pages/admin/AdminCourses";
 
 import Students from "./pages/teacher/Students";
 
+import Certificate from "./pages/student/Certificate";
 
 
 
@@ -192,6 +193,9 @@ element={
   <ProtectedRoute allowedRoles={["teacher"]}>
   <Students />
   </ProtectedRoute>} />
+
+
+<Route path="/certificate/:courseTitle" element={<Certificate />} />
 
 
                 <Route path="*" element={<NotFound />} />
