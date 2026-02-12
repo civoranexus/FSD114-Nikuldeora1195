@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllUsers, updateUserRole, updateUserStatus } from "../../api/AdminApi";
-import AdminSidebar from "../../components/admin/AdminSidebar";
+import { getAllUsers, updateUserRole, updateUserStatus } from "../../api/adminApi";
+// import AdminSidebar from "../../components/admin/AdminSidebar";
 import toast from "react-hot-toast";
 
 const AdminUsers = () => {
@@ -73,7 +73,7 @@ const AdminUsers = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#F4F7FA] flex">
-        <AdminSidebar />
+        {/* <AdminSidebar /> */}
         <div className="flex-1 flex items-center justify-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1B9AAA]"></div>
         </div>
@@ -83,7 +83,7 @@ const AdminUsers = () => {
 
   return (
     <div className="min-h-screen bg-[#F4F7FA] flex">
-      <AdminSidebar />
+      {/* <AdminSidebar /> */}
 
       {/* Main Content */}
       <main className="flex-1 p-8">
