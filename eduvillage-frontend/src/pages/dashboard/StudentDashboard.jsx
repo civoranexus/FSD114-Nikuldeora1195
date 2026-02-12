@@ -57,11 +57,18 @@ const StudentDashboard = () => {
   return (
     <StudentLayout title="  ">
       <div className="space-y-8">
+        
+        
         {/* ===== WELCOME BANNER ===== */}
         <div className="bg-linear-to-r from-[#02394A] via-[#012136] to-[#01181F] rounded-xl p-8 text-white shadow-lg">
+          
           <h1 className="text-3xl font-bold text-cyan-600 mb-2">Welcome back, {user?.name || 'Student'}! 👋</h1>
           <p className="text-[#CCE7EC] text-lg">Ready to continue your learning journey?</p>
+
+
+
         </div>
+        
 
         {/* ===== STATS CARDS ===== */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

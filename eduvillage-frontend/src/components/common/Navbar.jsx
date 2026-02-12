@@ -380,17 +380,31 @@ const Navbar = () => {
   return (
     <aside className="w-64 bg-white min-h-screen p-6 sticky top-0 shadow-lg border-r border-[#CCE7EC]">
       
-      {/* Logo */}
-      <div className="mb-8">
-        <div className="flex items-center space-x-2">
-          <div className="bg-linear-to-br from-[#1B9AAA] to-[#16808D] p-2 rounded-lg">
-            <span className="text-xl font-bold text-white">📚</span>
-          </div>
-          <span className="text-xl font-bold text-[#142C52]">
-            EduVillage
-          </span>
-        </div>
-      </div>
+    {/* <div className=" p-1.5 rounded-lg flex items-center justify-center ml-4 m-auto w-20 h-20">
+  <img 
+    src="https://civoranexus.com/assets/Long_logo.png" 
+    alt="EduVillage" 
+    className="w-full h-full object-contain" 
+    
+  />
+  
+</div> */}
+{/* Logo and Text Stack */}
+<div className="flex flex-col items-center justify-center">
+  {/* Logo Container */}
+  <div className="w-28 h-16 flex items-center justify-center">
+    <img 
+      src="https://civoranexus.com/assets/Long_logo.png" 
+      alt="EduVillage Logo" 
+      className="w-full h-full object-contain" 
+    />
+  </div>
+
+  {/* Text Underneath */}
+  <span className="mb-3 text-l ml-9 font-semibold tracking-tight font-sans text-[#0a86a9]">
+    EduVillage
+  </span>
+</div>
 
       {/* Navigation */}
       <nav className="space-y-2">
