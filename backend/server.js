@@ -13,6 +13,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 
+app.get("/", (req, res) => {
+  res.send("🚀 EduVillage Backend is Live!");
+});
+
+
 app.use(
   cors({
     origin: ["http://localhost:5173", "http://localhost:5174", "*"],
