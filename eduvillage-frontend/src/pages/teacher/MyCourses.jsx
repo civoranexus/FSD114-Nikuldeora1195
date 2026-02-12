@@ -440,11 +440,16 @@
 
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+
+import { Link, useNavigate } from "react-router-dom";
+
 import { getMyCourses, publishCourse } from "../../api/teacherCourseApi";
 import toast from "react-hot-toast";
-
+import TeacherLayout from "../../components/app/TeacherLayout";
 const MyCourses = () => {
+  const navigate = useNavigate();
+
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
@@ -495,8 +500,17 @@ const MyCourses = () => {
   }
 
   return (
+
     <div className="min-h-screen bg-[#F4F7FA] p-8">
       <div className="max-w-7xl mx-auto space-y-8">
+        {/* Back Button */}
+<button
+  onClick={() => navigate("/teacher/dashboard")}
+  className="mb-4 bg-[#1B9AAA] text-white  px-4 py-2 rounded-lg font-medium hover:bg-[#16808D] transition"
+>
+  ← Back to Dashboard
+</button>
+
         {/* Header Section */}
         <div className="flex justify-between items-center">
           <div>
@@ -693,6 +707,15 @@ const MyCourses = () => {
                       </button>
                     )}
                   </div>
+
+
+
+<button
+  onClick={() => navigate(`/teacher/course/${course._id}/quiz/create`)}
+  className="bg-[#1B9AAA] text-white px-4 py-2 rounded-lg"
+>
+  Create Quiz
+</button>
 
                   {/* Edit Link */}
                   <Link

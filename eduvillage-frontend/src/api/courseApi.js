@@ -39,3 +39,18 @@ export const completeLesson = (lessonId) => {
     `/enroll/lesson/${lessonId}/complete`
   );
 };
+
+
+// ================= QUIZ =================
+
+export const createQuiz = (data) => {
+  return axiosInstance.post("/quizzes", data);
+};
+
+export const submitQuiz = (data) => {
+  return axiosInstance.post("/quizzes/submit", data);
+};
+
+export const getQuizByCourse = (courseId) => {
+  return axiosInstance.get(`/quizzes/course/${courseId}`);
+};

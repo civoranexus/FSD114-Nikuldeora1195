@@ -8,6 +8,12 @@ import {
 import { completeLesson } from "../../api/courseApi";
 import toast from "react-hot-toast";
 
+import QuizSection from "../student/QuizSection";
+
+import { getQuizByCourse } from "../../api/courseApi";
+
+
+
 const CourseContent = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
@@ -21,6 +27,10 @@ const CourseContent = () => {
   const [completedLessons, setCompletedLessons] = useState([]);
   const [expandedSections, setExpandedSections] = useState(new Set());
   const [loading, setLoading] = useState(true);
+const [quiz, setQuiz] = useState(null);
+const { id } = useParams();
+
+
 
   // ✅ FETCH CONTENT
   useEffect(() => {
@@ -42,6 +52,32 @@ const CourseContent = () => {
 
     fetchContent();
   }, [courseId]);
+
+useEffect(() => {
+  const loadQuiz = async () => {
+    try {
+      const res = await getQuizByCourse(courseId);
+      setQuiz(res.data);
+    // eslint-disable-next-line no-unused-vars
+    } catch (err) {
+      console.log("No quiz found for this course");
+    }
+  };
+
+  loadQuiz();
+}, [courseId]);
+
+
+
+useEffect(() => {
+  getQuizByCourse(courseId)
+    .then(res => setQuiz(res.data))
+    .catch(() => {});
+}, [courseId]);
+
+
+
+
 
   // Toggle section expand/collapse
   const toggleSection = (sectionId) => {
@@ -182,7 +218,18 @@ const CourseContent = () => {
               >
                 Add Your First Section
               </button>
+
+              
             )}
+
+           <button
+  type="button"
+  onClick={() => navigate(`/teacher/course/${id}/quiz/create`)}
+  className="bg-[#1B9AAA] text-white px-4 py-2 rounded-lg mt-4"
+>
+  Create Quiz
+</button>
+
           </div>
         ) : (
           /* Sections */
@@ -377,6 +424,23 @@ const CourseContent = () => {
                           </div>
                         </div>
                       )}
+                      {quiz && (
+  <div className="mt-10">
+    <QuizSection quiz={quiz} />
+  </div>
+)}
+
+
+{quiz && user?.role === "student" && (
+  <button
+    onClick={() => navigate(`/courses/${courseId}/quiz`)}
+    className="bg-[#1B9AAA] text-white px-6 py-3 rounded-lg mt-6"
+  >
+    Take Quiz
+  </button>
+)}
+
+
                     </div>
                   )}
                 </div>

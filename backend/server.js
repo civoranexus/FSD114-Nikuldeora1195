@@ -55,9 +55,20 @@ app.use("/api/notifications", notificationRoutes);
 
 app.use("/api/content", require("./routes/content.routes"));
 
+app.use("/api/quizzes", require("./routes/quiz.routes"));
+
+
+
+
 const adminRoutes = require("./routes/admin.routes");
 app.use("/api/admin", adminRoutes);
 
 
 const certificateRoutes = require("./routes/certificate.routes");
 app.use("/api/certificates", certificateRoutes);
+
+
+const quizRoutes = require("./routes/quiz.routes");
+
+app.use("/api/quizzes", quizRoutes);
+app.use("/api/quizzes", require("./routes/quiz.routes"));

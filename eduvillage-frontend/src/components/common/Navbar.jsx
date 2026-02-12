@@ -486,6 +486,7 @@ const Navbar = () => {
               <span className="text-xl">👥</span>
               <span className="font-medium">Students</span>
             </Link>
+            
 
             <Link
               to="/teacher/announcements/create"

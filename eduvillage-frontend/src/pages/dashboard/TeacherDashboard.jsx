@@ -632,7 +632,8 @@ const TeacherDashboard = () => {
               </div>
 
               {/* Notification */}
-              <button className="relative bg-white border border-[#CCE7EC] p-2 rounded-lg hover:bg-[#F4F7FA] transition-colors shadow-sm">
+              <button 
+              onClick={() => navigate('/teacher/announcements/create')}  className="relative bg-white border border-[#CCE7EC] p-2 rounded-lg hover:bg-[#F4F7FA] transition-colors shadow-sm">
                 <span className="text-xl">🔔</span>
                 <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
