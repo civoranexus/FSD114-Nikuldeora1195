@@ -36,7 +36,19 @@ const createCourse = async (req, res) => {
 // ===============================
 const getCourses = async (req, res) => {
   try {
-    const courses = await Course.find({ isPublished: true })
+    const { search } = req.query;
+
+    let filter = { isPublished: true };
+
+    // If search query exists
+    if (search) {
+      filter.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const courses = await Course.find(filter)
       .populate("createdBy", "name email");
 
     res.json(courses);
@@ -44,6 +56,7 @@ const getCourses = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // ===============================
 // PUBLISH COURSE

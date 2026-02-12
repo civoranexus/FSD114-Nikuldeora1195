@@ -2,9 +2,10 @@ import axiosInstance from "./axiosInstance";
 
 // ================= STUDENT =================
 
-export const getPublishedCourses = () => {
-  return axiosInstance.get("/courses");
+export const getPublishedCourses = (search = "") => {
+  return axiosInstance.get(`/courses?search=${search}`);
 };
+
 
 export const enrollCourse = (courseId) => {
   return axiosInstance.post(`/enroll/${courseId}`);
