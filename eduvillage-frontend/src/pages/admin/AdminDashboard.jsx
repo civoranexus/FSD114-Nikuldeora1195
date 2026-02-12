@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAdminStats } from "../../api/adminApi";
+import * as adminApi from "../../api/adminApi";
 // import AdminSidebar from "../../components/admin/AdminSidebar";
 import StatCard from "../../components/admin/StatCard";
 import toast from "react-hot-toast";
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
 
   const loadStats = async () => {
     try {
-      const response = await getAdminStats();
+      const response = await adminApi.getAdminStats();
       setStats(response.data);
     } catch (error) {
       console.error("Failed to load stats:", error);
