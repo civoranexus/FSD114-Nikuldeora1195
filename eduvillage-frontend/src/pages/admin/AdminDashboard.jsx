@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as adminApi from "../../api/adminApi";
+import * as adminApi from "../../api/adminApiTemp";
 // import AdminSidebar from "../../components/admin/AdminSidebar";
 import StatCard from "../../components/admin/StatCard";
 import toast from "react-hot-toast";

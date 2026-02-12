@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCourses, deleteCourse } from "../../api/adminApi";
+import { getAllCourses, deleteCourse } from "../../api/adminApiTemp";
 // import AdminSidebar from "../../components/admin/AdminSidebar";
 
 import toast from "react-hot-toast";

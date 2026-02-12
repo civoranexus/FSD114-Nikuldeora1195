@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllUsers, updateUserRole, updateUserStatus } from "../../api/adminApi";
+import { getAllUsers, updateUserRole, updateUserStatus } from "../../api/adminApiTemp";
 // import AdminSidebar from "../../components/admin/AdminSidebar";
 import toast from "react-hot-toast";
 
