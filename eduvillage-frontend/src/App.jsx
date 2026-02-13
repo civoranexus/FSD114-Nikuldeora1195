@@ -246,7 +246,7 @@ import Register from "./pages/auth/Register";
 // Dashboard & Management
 import StudentDashboard from "./pages/dashboard/StudentDashboard";
 import TeacherDashboard from "./pages/dashboard/TeacherDashboard";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+// import AdminDashboard from "./pages/admin/AdminDashboard";
 
 // Course Pages
 import CourseList from "./pages/student/CourseList";

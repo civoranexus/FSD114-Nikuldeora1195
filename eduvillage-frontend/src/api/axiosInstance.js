@@ -18,10 +18,18 @@
 
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  // baseURL: "http://localhost:5000/api",
-  baseURL: "https://fsd114-nikuldeora1195.onrender.com/api"
+// const axiosInstance = axios.create({
+//   // baseURL: "http://localhost:5000/api",
+//   baseURL: "https://fsd114-nikuldeora1195.onrender.com/api"
 
+// });
+const isLocal = window.location.hostname === "localhost";
+
+const axiosInstance = axios.create({
+  baseURL: isLocal 
+    ? "http://localhost:5000/api" 
+    : "https://fsd114-nikuldeora1195.onrender.com/api",
+  withCredentials: true,
 });
 
 // 🔐 Attach token to every request
