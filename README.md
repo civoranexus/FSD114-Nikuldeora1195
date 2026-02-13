@@ -1,133 +1,157 @@
-# 🚀 CivoraX Internship Program 2025-26
 
-<p align="center">
-  <img src="https://internship.civoranexus.com/CivoraX.png" alt="CivoraX Logo" width="200"/>
-</p>
+# 🎓 EduVillage – Online Learning Platform
 
-<p align="center">
-  <strong>Launch your tech career with real projects, expert mentorship, and industry-recognized certification</strong>
-</p>
+**EduVillage** is a professional-grade, full-stack Online Learning Management System (LMS) built using the MERN stack. Designed with a focus on clean architecture and secure role-based access, it mirrors the student and instructor workflows found on industry-leading platforms like Coursera and Udemy.
 
+Live : eduvillage-fsd114.vercel.app
+---
 
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Duration-5%20Weeks-blue" alt="Duration"/>
-  <img src="https://img.shields.io/badge/Start%20Date-Jan%205%2C%202026-green" alt="Start Date"/>
-  <img src="https://img.shields.io/badge/End%20Date-Feb%208%2C%202026-orange" alt="End Date"/>
-  <img src="https://img.shields.io/badge/Mode-Remote--First-purple" alt="Mode"/>
-</p>
+## 🚀 Project Status
+* **Stage:** Active Development
+* **Frontend:** Integrated & Responsive
+* **Backend:** Stable API with Middleware Protection
+* **Authentication:** JWT + Role-Based Access Control (RBAC)
+* **UI/UX:** Modern, Coursera-inspired design (Student Learning Flow completed)
 
 ---
 
-## 📊 Program Statistics
+## 🛠 Tech Stack
 
-| Metric | Value |
-|--------|-------|
-| 🎓 Interns Trained | 300+ |
-| 💼 Live Projects | 20 |
-| ⏱️ Program Duration | 5 Weeks |
-
----
-
-
-## 📅 Program Details
-
-| Detail | Information |
-|--------|-------------|
-| **Duration** | 5-week intensive program |
-| **Dates** | January 5 - February 8, 2026 |
-| **Format** | Remote-first with live sessions and workshops |
-| **Structure** | Real-time project work with weekly milestones |
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React (Vite), Tailwind CSS, Axios, Context API, React Router DOM |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB, Mongoose (ODM) |
+| **Security** | JWT, Bcrypt.js, RBAC Middleware |
+| **Feedback** | React Hot Toast |
 
 ---
 
-## ✅ Eligibility Criteria
+## 👥 User Roles & Permissions
 
-- ✔️ Students from **any year or degree program**
-- ✔️ Recent graduates and **career switchers** welcome
-- ✔️ **Basic programming knowledge** required
-- ✔️ Strong **passion for technology** and learning
+EduVillage employs a strict **Role-Based Access Control (RBAC)** system to ensure data integrity and security.
 
----
-
-## 🛠️ Technologies You'll Master
-
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | React, Next.js |
-| **Backend** | Node.js, Python |
-| **Advanced** | AI & Machine Learning |
-| **Infrastructure** | Cloud & DevOps |
-| **Mobile** | Cross-platform Development |
-| **Database** | SQL & NoSQL Systems |
-| **APIs** | RESTful & GraphQL |
-| **Workflow** | Agile & Git |
+* **👩‍🎓 Student:** Can register/login, browse published courses, enroll, track course progress, and view announcements.
+* **👨‍🏫 Teacher:** Can create courses, manage curriculum (sections/lessons), and broadcast announcements.
+* **🛡️ Admin:** (Future Scope) System-wide oversight, user management, and platform analytics.
 
 ---
 
-## 📋 Application Process
+## 📚 Core Features
+
+### 👩‍🎓 Student Experience
+* **Dashboard:** View enrolled courses at a glance with visual progress bars and completion badges.
+* **Structured Learning:** Seamless transition between lessons within a multi-section content view.
+* **My Learning:** Dedicated space for tracking active enrollments and "Continue Learning" functionality.
+* **Announcements:** Stay updated with course-specific news directly from the instructors.
+
+### 👨‍🏫 Teacher Experience
+* **Course Builder:** Comprehensive tools to create and edit course metadata (titles, descriptions).
+* **Curriculum Management:** Hierarchical structure involving **Sections** and **Lessons**.
+* **Content Control:** Lessons support detailed text-based instruction with optional image URL integration.
+* **Ownership Protection:** Backend guards ensure only the original course creator can modify or delete content.
+
+---
+
+## 🗂 Project Structure
+
+### 🖥️ Backend (`/backend`)
+```text
+├── config/         # Database connection (db.js)
+├── controllers/    # Logical processing for routes (Auth, Course, Enrollment, etc.)
+├── middleware/     # JWT Auth & Role-based validation guards
+├── models/         # Mongoose schemas (User, Course, Section, Lesson, etc.)
+├── routes/         # Express route definitions
+└── server.js       # Entry point
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   01. Register  │───▶│  02. Team       │───▶│  03. Receive    │
-│   Online        │    │  Review         │    │  Confirmation   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+
+### 💻 Frontend (`/src`)
+
+```text
+├── api/            # Axios instance and centralized API calls
+├── components/     # UI components (app, ui, protected routes)
+├── context/        # Global state management (AuthContext)
+├── pages/          # View components (Student, Teacher, Auth, Dashboard)
+├── utils/          # Helper functions and constants
+└── App.jsx         # Main route configuration
+
 ```
 
-1. **📝 Register Online** - Complete your application form with details and preferences
-2. **🔍 CivoraX Team Review** - Our team reviews your application and qualifications
-3. **✉️ Eligibility Email** - Receive confirmation email if selected
+---
 
+## 🧭 Key Routes
 
-
-
-## 📞 Contact Information
-
-| Channel | Details |
-|---------|---------|
-| 📧 **Email** | [contact@civoranexus.com](mailto:contact@civoranexus.com) |
-| 📱 **Phone** | [+91 7350675192](tel:+917350675192) |
-| 📍 **Location** | 422605, Sangamner, Maharashtra, India |
-
-### 🔗 Social Links
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-CivoraX-blue?style=flat&logo=linkedin)](https://www.linkedin.com/company/civoranexus)
-[![Instagram](https://img.shields.io/badge/Instagram-CivoraX-E4405F?style=flat&logo=instagram)](https://www.instagram.com/civoranexus)
-[![Twitter](https://img.shields.io/badge/Twitter-CivoraX-1DA1F2?style=flat&logo=twitter)](https://twitter.com/civoranexus)
-[![YouTube](https://img.shields.io/badge/YouTube-CivoraX-FF0000?style=flat&logo=youtube)](https://www.youtube.com/@civoranexus)
+| Entity | Route | Description |
+| --- | --- | --- |
+| **Auth** | `/login`, `/register` | Secure onboarding flow |
+| **Student** | `/dashboard`, `/my-courses` | Personal learning overview |
+| **Teacher** | `/teacher/courses/create` | Course initialization wizard |
+| **Content** | `/courses/:courseId/content` | Lesson viewer & management |
 
 ---
 
-## 🏢 About Civora Nexus
+## 🔐 Security & Design Decisions
 
-**Civora Nexus Pvt. Ltd.** is a technology company empowering communities through innovative civic and healthcare technology solutions.
-
-### Company Services:
-- 🔄 Digital Transformation for Businesses
-- 🏘️ Smart Community & Enterprise Solutions
-- 💡 Affordable Tech Solutions
-- 📊 Data Analytics & Business Insights
-- 🎓 Innovation & Skill Development
-- 🤖 AI & Automation Solutions
+* **Atomic Management:** Course creation is decoupled from content management to allow for a focused, scalable editing experience.
+* **Defensive API Design:** Implemented backend validation for `ObjectIds` and unauthorized access attempts to prevent data leakage.
+* **State Management:** Secure JWT storage combined with React Context API for persistent user authentication.
+* **Scalable UI:** Designed using Tailwind CSS for a fully responsive experience across mobile, tablet, and desktop.
 
 ---
 
-## 📚 Quick Links
+## 🏁 How to Run Locally
 
-- 🌐 [Official Website](https://civoranexus.com/)
-- 📋 [Internship Portal](https://civoranexus.com/internships)
-- 🔐 [Certificate Verification](https://internship.civoranexus.com)
-- 📄 [Privacy Policy](https://civoranexus.com/privacy-policy)
-- 📜 [Terms of Service](https://civoranexus.com/terms-and-conditions)
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/your-username/eduvillage.git](https://github.com/your-username/eduvillage.git)
+
+```
+
+### 2. Setup Backend
+
+```bash
+cd backend
+npm install
+# Create a .env file and add your MONGO_URI and JWT_SECRET
+npm run dev
+
+```
+
+### 3. Setup Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+
+```
+
+
+---
 
 
 
-<p align="center">
-  <strong>© 2025 Civora Nexus Pvt. Ltd. All rights reserved.</strong>
-</p>
+Student Pages:
 
-<p align="center">
-  Made with ❤️ by CivoraX Team
-</p>
+Dashboard - Welcome, stats, continue learning
+Course List - Browse and enroll in courses
+My Courses - Track progress, update completion
+Announcements - View timeline of updates
 
+Teacher Pages:
+
+Dashboard - Analytics, performance charts, overview
+My Courses - Manage, publish, edit courses
+
+
+File	                Description
+TeacherDashboard.jsx	Light modern dashboard redesign
+MyCourses.jsx (Teacher)	Light card-based course management UI
+CreateAnnouncement.jsx	Clean and modern announcement creation page
+
+
+**Developed as part of a Full-Stack Development Internship Project.**
+*Built with best practices for the MERN stack and clean code architecture.*
 
