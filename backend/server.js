@@ -18,12 +18,25 @@ app.get("/", (req, res) => {
 });
 
 
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "http://localhost:5174", "*"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:5173", "http://localhost:5174", "*"],
+//     credentials: true,
+//   })
+// );
+
+
+app.use(cors({
+  origin: [
+    "https://eduvillage-fsd114.vercel.app",
+    "https://eduvillage-fsd114-git-main-nikuldeora1195s-projects.vercel.app",
+    "https://eduvillage-fsd114-34jyb8udk-nikuldeora1195s-projects.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:5174"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 
 
