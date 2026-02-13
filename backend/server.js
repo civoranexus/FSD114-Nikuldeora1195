@@ -32,7 +32,9 @@ app.use(cors({
     "https://eduvillage-fsd114-git-main-nikuldeora1195s-projects.vercel.app",
     "https://eduvillage-fsd114-34jyb8udk-nikuldeora1195s-projects.vercel.app",
     "http://localhost:5173",
-    "http://localhost:5174"
+    "http://localhost:5174",
+"eduvillage-fsd114-git-main-nikuldeora1195s-projects.vercel.app",
+"eduvillage-fsd114-7kt969vut-nikuldeora1195s-projects.vercel.app"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
