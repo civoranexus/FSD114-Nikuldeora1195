@@ -3,6 +3,7 @@
 
 **EduVillage** is a professional-grade, full-stack Online Learning Management System (LMS) built using the MERN stack. Designed with a focus on clean architecture and secure role-based access, it mirrors the student and instructor workflows found on industry-leading platforms like Coursera and Udemy.
 
+Live : eduvillage-fsd114.vercel.app
 ---
 
 ## 🚀 Project Status

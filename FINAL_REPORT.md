@@ -16,7 +16,7 @@
 # 📌 Project Title
 
 ## EduVillage – Online Learning Platform
-
+Live : https://eduvillage-fsd114.vercel.app/
 ---
 
 # 📝 Project Overview

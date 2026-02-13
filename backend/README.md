@@ -5,6 +5,7 @@ This is the backend server for the **EduVillage Online Learning Platform**, a co
 It is built using **Node.js**, **Express.js**, and **MongoDB**.
 
 ---
+Live backend : https://fsd114-nikuldeora1195.onrender.com
 
 ## 🚀 Tech Stack
 

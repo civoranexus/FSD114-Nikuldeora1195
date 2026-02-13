@@ -6,7 +6,7 @@ It allows teachers to create and manage courses, while students can enroll, trac
 
 ---
 
-## 🚀 Live Features
+## 🚀 Live Features : https://eduvillage-fsd114.vercel.app/
 
 ### 👨‍🏫 Teacher
 
